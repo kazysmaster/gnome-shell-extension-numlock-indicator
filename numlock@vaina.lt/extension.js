@@ -23,12 +23,34 @@ function init() {
 }
 
 function enable() {
-	Main.panel._rightBox.insert_actor(indicator.actor,  0);
+	//Main.panel.addToStatusArea('numlock', indicator, getPreferredIndex());
+	Main.panel._rightBox.insert_actor(indicator.actor,  getPreferredIndex());
+	Main.panel._menus.addMenu(indicator.menu);
 }
 
 function disable() {
+	//indicator.destroy();
 	Main.panel._rightBox.remove_actor(indicator.actor);
+	Main.panel._menus.removeMenu(indicator.menu);
 }
+
+function getPreferredIndex() {
+	//just before xkb layout indicator
+	if (Main.panel._statusArea['keyboard'] != null) {
+		let xkb = Main.panel._statusArea['keyboard'];
+		let children = Main.panel._rightBox.get_children();
+		
+		for (let i = children.length - 1; i >= 0; i--) {
+			//global.log("i:" + i + " role pos " +  children[i]._rolePosition);
+			if(xkb == children[i]._delegate){
+				//return children[i]._rolePosition;
+				return i;
+			}
+		}
+	}
+    return 0;
+}
+
 
 function NumlockIndicator() {
    this._init();
