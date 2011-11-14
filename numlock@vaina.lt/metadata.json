@@ -1,0 +1,8 @@
+{
+   "shell-version": ["3.0", "3.2"], 
+   "uuid": "numlock@vaina.lt", 
+   "name": "Numlock", 
+   "description": "Numlock status on the panel", 
+   "url": "http://vaina.lt/gnome-shell-extensions",
+   "original-authors": "Kazimieras Vaina"
+}

@@ -1,0 +1,20 @@
+.numlock-state-enabled {
+	padding: 0 7px;
+    font-weight: bold;
+    background-color: rgba(200,200,200, 0.9);
+    color: rgba(50,50,50, 0.9);
+    border: 1px;
+    border-color: rgba(200,200,200, 0.9);
+    border-radius: 3px;
+}
+
+.numlock-state-disabled {
+	padding: 0 7px;
+    font-weight: bold;
+    background-color: rgba(50,50,50, 0.9);
+    color: rgba(200,200,200, 0.9);
+    border: 1px;
+    border-color: rgba(50,50,50, 0.9);
+    border-radius: 3px;
+}
+
