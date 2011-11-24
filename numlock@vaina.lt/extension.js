@@ -4,6 +4,7 @@ const Gettext = imports.gettext;
 const _ = Gettext.gettext;
 
 const Keymap = imports.gi.Gdk.Keymap;
+const Caribou = imports.gi.Caribou;
 
 const Panel = imports.ui.panel;
 const Main = imports.ui.main;
@@ -64,12 +65,18 @@ NumlockIndicator.prototype = {
 
 		this.label = new St.Label({ text: '1'});
 		this.actor.add_actor(this.label);
-		this.menuItem = new PopupMenu.PopupSwitchMenuItem(_('Numlock'), false);
+		this.menuItem = new PopupMenu.PopupSwitchMenuItem(_('Numlock'), false, { reactive: true });
+		this.menuItem.connect('activate', Lang.bind(this, this._handleNumlockMenuItem));
 		this.menu.addMenuItem(this.menuItem);
 
 		this._updateState();
 		Keymap.get_default().connect('state-changed', Lang.bind(this, this._handleStateChange));
 	},
+	
+	_handleNumlockMenuItem: function(actor, event) {
+		Caribou.XAdapter.get_default().keyval_press(0xff7f);
+		Caribou.XAdapter.get_default().keyval_release(0xff7f);
+	}, 
 	
 	_handleStateChange: function(actor, event) {
 		if (this.numlock_state != this._getNumlockState()) {
